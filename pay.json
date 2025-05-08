@@ -1,0 +1,14 @@
+[
+  { "table": 1, "deno": 2 , "nume": 1, "pay": 300, "ud":-1},
+  { "table": 1, "deno": 2 , "nume": 1, "pay": 300, "ud":1},
+
+  { "table": 2, "deno": 5 , "nume": 4, "pay": 1500, "ud":0},
+  { "table": 2, "deno": 5 , "nume": 1, "pay": 1500, "ud":1},
+
+  { "table": 3, "deno": 2, "nume": 1, "pay": 1500, "ud":0},
+  { "table": 3, "deno": 2, "nume": 1, "pay": 1500, "ud":1},
+
+  { "table": 4, "deno": 2, "nume": 1, "pay": 1500, "ud":-1},
+  { "table": 4, "deno": 2, "nume": 1, "pay": 1500, "ud":0}
+]
+
