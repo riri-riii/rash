@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>しみゅれーた</title>
+  <style>
+  button {
+    width: 100%; /* ボタンを画面幅に合わせる */
+    max-width: 300px; /* 必要に応じて最大幅を設定 */
+    padding: 10px; /* ボタンの内側の余白 */
+    font-size: 1rem; /* フォントサイズを調整 */
+    box-sizing: border-box; /* パディングを含めてサイズを計算 */
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap; /* ボタンが折り返すように設定 */
+    gap: 10px; /* ボタン間の余白 */
+    justify-content: center; /* ボタンを中央揃え */
+  }
+</style>
 </head>
 <body>
   <h2>1で1回転、2で5回転、3で当たりor終了まで、4キーで終了まで</h2>
