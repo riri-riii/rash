@@ -1,5 +1,5 @@
 const starttable = 1; // 開始テーブル
-const endtable = 1;// 終了テーブル
+const endtable = 1; // 終了テーブル
 let wintable = []; // 当選テーブル
 let paytable = []; // 出玉テーブル
 let nowtable = starttable; // 現在のテーブル
@@ -11,33 +11,80 @@ let end_flg = false; // 終了フラグ
 let firsthit_cnt = 0; // 初当たり回数
 let firsthit_sum = 0;
 
-// JSON読込_win
-fetch('win.json')
+// titles.jsonのデータを取得してドロップダウンリストに追加
+fetch('titles.json')
     .then(response => {
-        if (!response.ok) throw new Error('読み込み失敗');
+        if (!response.ok) throw new Error('titles.jsonの読み込みに失敗しました');
         return response.json();
     })
     .then(data => {
-        wintable = data;
+        const titleSelect = document.getElementById('titleSelect');
+        data.forEach(title => {
+            const option = document.createElement('option');
+            option.value = title.title; // タイトルを値として設定
+            option.textContent = title.title;
+            titleSelect.appendChild(option);
+        });
+
+        // ドロップダウンリストの変更イベントを監視
+        titleSelect.addEventListener('change', (event) => {
+            const selectedTitle = event.target.value;
+            if (selectedTitle) {
+                loadJSON(selectedTitle);
+                resetDisplay();
+            }
+        });
     })
     .catch(error => {
-        document.getElementById('results').textContent = 'JSONの読み込みに失敗しました:win';
-        console.error(error);
+        console.error('titles.jsonの読み込みエラー:', error);
     });
 
-// JSON読込_pay
-fetch('pay.json')
-    .then(response => {
-        if (!response.ok) throw new Error('読み込み失敗');
-        return response.json();
-    })
-    .then(data => {
-        paytable = data;
-    })
-    .catch(error => {
-        document.getElementById('results').textContent = 'JSONの読み込みに失敗しました:pay';
-        console.error(error);
-    });
+// 動的にJSONファイルを読み込む関数
+function loadJSON(title) {
+    // [title]win.jsonを読み込む
+    fetch(`${title}win.json`)
+        .then(response => {
+            if (!response.ok) throw new Error(`${title}win.jsonの読み込みに失敗しました`);
+            return response.json();
+        })
+        .then(data => {
+            wintable = data;
+            console.log(`${title}win.jsonが読み込まれました`, wintable);
+        })
+        .catch(error => {
+            document.getElementById('results').textContent = `${title}win.jsonの読み込みに失敗しました`;
+            console.error(error);
+        });
+
+    // [title]pay.jsonを読み込む
+    fetch(`${title}pay.json`)
+        .then(response => {
+            if (!response.ok) throw new Error(`${title}pay.jsonの読み込みに失敗しました`);
+            return response.json();
+        })
+        .then(data => {
+            paytable = data;
+            console.log(`${title}pay.jsonが読み込まれました`, paytable);
+        })
+        .catch(error => {
+            document.getElementById('results').textContent = `${title}pay.jsonの読み込みに失敗しました`;
+            console.error(error);
+        });
+}
+// 表示のリセット
+function resetDisplay() {
+    document.getElementById('now_01').innerHTML = 'ここに乱数が表示されます';
+    document.getElementById('now_02').innerHTML = '<br>';
+    document.getElementById('results').innerHTML = '';
+    nowtable = starttable;
+    try_cnt = 0;
+    consecutive_cnt = 0;
+    result_pay = 0;
+    hit = false;
+    end_flg = false;
+    firsthit_cnt = 0;
+    firsthit_sum = 0;
+}
 
 // キー押下
 document.addEventListener('keydown', function (event) {
@@ -55,7 +102,6 @@ document.addEventListener('keydown', function (event) {
             }
         }
     }
-
 });
 
 // ボタン押下
@@ -86,7 +132,7 @@ function lotate_once(cnt) {
             break;
         }
     }
-};
+}
 
 // 抽選処理
 function lottery() {
@@ -103,7 +149,7 @@ function lottery() {
     hit = false;
 
     for (let thishit of wintable) {
-        if (thishit.table === nowtable) { // .tableがnowtableと一致
+        if (thishit.table === nowtable) {
             limit = thishit.limit;
             limitud = thishit.ud;
             tablename = thishit.name;
@@ -119,8 +165,8 @@ function lottery() {
         firsthit_cnt++;
         firsthit_sum += try_cnt;
         for (let thispay of paytable) {
-            if (thispay.table === nowtable) { // .tableがnowtableと一致
-                pay = thispay.pay
+            if (thispay.table === nowtable) {
+                pay = thispay.pay;
                 cumulative2 += thispay.nume / thispay.deno;
                 if (rand2 < cumulative2) {
                     result_pay += thispay.pay;
@@ -137,7 +183,7 @@ function lottery() {
 
     if (hit) {
         document.getElementById('now_02').innerHTML +=
-            `<font color="red"> 当たり </font>`
+            `<font color="red"> 当たり </font>`;
     }
     if (try_cnt >= limit && !hit) {
         nowtable += limitud;

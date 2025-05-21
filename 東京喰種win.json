@@ -1,0 +1,4 @@
+[
+    { "name": "通常", "table": 1, "deno": 199 , "nume": 1, "limit": 100000, "ud": 0},
+    { "name": "LT", "table": 2, "deno": 95.3 , "nume": 1, "limit": 130, "ud": -2}
+]

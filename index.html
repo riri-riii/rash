@@ -17,7 +17,8 @@
     flex-wrap: wrap; /* ボタンが折り返すように設定 */
     gap: 10px; /* ボタン間の余白 */
     justify-content: center; /* ボタンを中央揃え */
-    }
+    align-items: center; /* 垂直方向の中央揃え */
+  }
   body {
     font-size: 1.2rem; /* 全体の文字サイズを少し大きく設定 */
     line-height: 1.5; /* 読みやすい行間を設定 */
@@ -30,6 +31,14 @@
   button {
     font-size: 1rem; /* ボタン内の文字サイズも調整 */
   }
+
+  select {
+    width: 100%; /* ドロップダウンを画面幅に合わせる */
+    max-width: 300px; /* 必要に応じて最大幅を設定 */
+    padding: 10px; /* 内側の余白 */
+    font-size: 1rem; /* フォントサイズを調整 */
+    box-sizing: border-box; /* パディングを含めてサイズを計算 */
+  }
   </style>
 </head>
 <body>
@@ -37,6 +46,9 @@
   <p id="now_01">ここに乱数が表示されます</p>
   <p id="now_02"><br></p>
   <div>
+    <select id="titleSelect">
+      <option value="">タイトルを選択してください</option>
+    </select>
     <button id="once">1回転</button>
     <button id="fifth">5回転</button>
     <button id="tohit">当たりor終了まで</button>

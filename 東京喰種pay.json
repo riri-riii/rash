@@ -1,0 +1,10 @@
+[
+  { "table": 1, "deno": 100 , "nume": 49, "pay": 300, "ud":-10},
+  { "table": 1, "deno": 100 , "nume": 1, "pay": 300, "ud":1},
+  { "table": 1, "deno": 100 , "nume": 25, "pay": 1500, "ud":-10},
+  { "table": 1, "deno": 100 , "nume": 25, "pay": 1500, "ud":1},
+
+  { "table": 2, "deno": 100 , "nume": 3, "pay": 6000, "ud":0},
+  { "table": 2, "deno": 100 , "nume": 97, "pay": 3000, "ud":0}
+]
+

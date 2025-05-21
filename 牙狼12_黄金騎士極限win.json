@@ -1,0 +1,5 @@
+[
+    { "name": "通常", "table": 1, "deno": 437.4 , "nume": 1, "limit": 100000, "ud": 0},
+    { "name": "ラッシュ", "table": 2, "deno": 1 , "nume": 1, "limit": 2, "ud": 0},
+    { "name": "LT", "table": 3, "deno": 1 , "nume": 1, "limit": 2, "ud": 0}
+]

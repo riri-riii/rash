@@ -1,0 +1,6 @@
+[
+    { "name": "通常", "table": 1, "deno": 199 , "nume": 1, "limit": 100000 ,"ud":0},
+    { "name": "ラッシュ", "table": 2, "deno": 14.3 , "nume": 1, "limit": 19, "ud":-10},
+    { "name": "LT", "table": 3, "deno": 14.3 , "nume": 1, "limit": 15, "ud":-1},
+    { "name": "LT上乗せ", "table": 4, "deno": 14.3 , "nume": 1, "limit": 10000, "ud":-1}
+]
